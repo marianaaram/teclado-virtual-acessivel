@@ -1,0 +1,13 @@
+palavras_pt.txt  -  lista de palavras usada pelo sugestor (uma por linha, da mais para a menos usada).
+
+Como foi feita (so e preciso refazer se quiser outra lista):
+  1) Ordem de frequencia: as 60.000 palavras mais usadas do portugues, do pacote "wordfreq"
+     (Robyn Speer, https://github.com/rspeer/wordfreq). Dados sob a licenca
+     Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0); esta lista e derivada deles
+     e mantem a mesma licenca.
+  2) Validacao: so foram mantidas as palavras aceitas pelo dicionario ortografico Hunspell pt-BR
+     (projeto VERO / LibreOffice, Raimundo Moura, LGPLv3 / MPL), o que remove erros de digitacao
+     ("nao", "voce"), girias de internet, palavras em ingles e nomes proprios.
+
+Para ajustar, edite o arquivo: apague uma palavra para ela nunca mais ser sugerida; a ordem das
+linhas define a prioridade (quanto mais acima, mais cedo aparece).

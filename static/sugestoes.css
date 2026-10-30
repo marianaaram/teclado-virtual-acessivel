@@ -1,0 +1,26 @@
+/* ========================================
+   BOTÕES DE SUGESTÃO DE PALAVRAS
+   (complementa o .botao-categoria de cada paginaN.css:
+    tamanho, posição e fundo continuam vindo de lá)
+   ======================================== */
+
+.botao-categoria {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 16px;
+    overflow: hidden;
+
+    color: #ffffff;
+    font-family: "Secular One", sans-serif;
+    font-style: normal;
+    font-size: 44px;
+
+    user-select: none;
+}
+
+.sugestao-texto {
+    display: inline-block;
+    white-space: nowrap;   /* a palavra nunca quebra: a fonte encolhe (ver sugestoes.js) */
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teclado Digital</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='pagina11.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sugestoes.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app" id="app">
+
+        <!-- BARRA SUPERIOR -->
+        <div class="barra-superior">
+
+            <a href="{{ url_for('index') }}" class="botao-superior botao-superior-1">
+                <img src="{{ url_for('static', filename='imagens/casinha.png') }}" alt="Início">
+            </a>
+
+            <div class="texto-digitado" id="texto-digitado">
+                <div class="texto-linhas"><span id="conteudo-texto"></span><span class="cursor-texto">|</span></div>
+            </div>
+
+            <div class="botao-superior botao-superior-2" onclick="fecharPrograma()">
+                <img src="{{ url_for('static', filename='imagens/x saida.png') }}" alt="Fechar">
+            </div>
+
+
+        </div>
+
+
+        <!-- ÁREA DOS 3 BOTÕES -->
+        <div class="area-botoes-superiores"></div>
+
+        <div class="botao-categoria botao-categoria-1" id="sugestao-1" onclick="aceitarSugestao(0)"></div>
+        <div class="botao-categoria botao-categoria-2" id="sugestao-2" onclick="aceitarSugestao(1)"></div>
+        <div class="botao-categoria botao-categoria-3" id="sugestao-3" onclick="aceitarSugestao(2)"></div>
+
+
+        <!-- PRIMEIRA FILEIRA -->
+        <a href="{{ url_for('pagina10') }}" class="botao-principal botao-principal-1">
+            <span class="texto-botao">📂<br>(abrir textos)</span>
+        </a>
+
+        <div class="botao-principal botao-principal-2"  onclick="salvarEVoltar()">
+            <span class="texto-botao">📁 (salvar)</span>
+        </div>
+        
+        <div class="botao-principal botao-principal-3">
+            <span class="texto-botao"> </span>
+        </div>
+
+
+        <!-- SEGUNDA FILEIRA -->
+        <div class="botao-principal botao-principal-4">
+            <span class="texto-botao"> </span>
+        </div>
+
+        <div class="botao-principal botao-principal-5">
+            <span class="texto-botao"> </span>
+        </div>
+
+        <div class="botao-principal botao-principal-6">
+            <span class="texto-botao"> </span>
+        </div>
+
+
+    </div>
+
+    <script src="{{ url_for('static', filename='escala.js') }}"></script>
+    <script src="{{ url_for('static', filename='sugestoes.js') }}"></script>
+
+</body>
+
+</html>

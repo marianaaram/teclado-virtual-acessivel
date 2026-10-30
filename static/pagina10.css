@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("/static/imagens/fundo tela.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    transform-origin: center center;
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   BARRA SUPERIOR
+   ======================================== */
+
+.barra-superior {
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+
+    width: 1280px;
+    height: 113px;
+
+    background-color: #4E326D;
+
+    border-radius: 0px 0px 8px 8px;
+}
+
+
+/* ========================================
+   BOTÕES DA BARRA SUPERIOR
+   ======================================== */
+
+.botao-superior {
+    position: absolute;
+
+    width: 77px;
+    height: 70px;
+    
+    background-image: url("/static/imagens/botoes bolinha.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    background-color: transparent;
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.botao-superior img {
+    width: 48px;
+    height: 50px;
+
+    object-fit: contain;
+    pointer-events: none;
+
+    position: relative;
+    left: 11px;
+    top: 6px;
+   
+}
+
+.botao-superior-1 {
+    left: 14px;
+    top: 7px;
+}
+
+.botao-superior-2 {
+    left: 1189px;
+    top: 7px;
+}
+
+
+/* ========================================
+   CAIXA DE TEXTO (mostra o que foi digitado)
+   ======================================== */
+
+.texto-digitado {
+    position: absolute;
+
+    left: 105px;
+    top: 0px;
+
+    width: 1070px;
+    height: 106px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+    font-family: "Secular One", sans-serif;
+    font-style: normal;
+    font-size: 44px;
+
+    padding: 0 20px;
+
+    
+    text-overflow: ellipsis;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.texto-linhas {
+    width: 100%;
+    line-height: 1.1;
+    white-space: pre-wrap;      /* quebra de linha, mas mantém os espaços digitados */
+    overflow-wrap: anywhere;    /* quebra até palavras gigantes que não cabem na linha */
+}
+
+.cursor-texto {
+    display: inline-block;
+    margin-left: 0px;
+    animation: piscar-cursor 1s step-start infinite;
+}
+
+@keyframes piscar-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* ========================================
+   ÁREA DOS 3 BOTÕES
+   ======================================== */
+
+.area-botoes-superiores {
+    position: absolute;
+
+    left: 9px; 
+    top: 121px;
+
+    width: 1265px;
+    height: 93px;
+
+    background-image: url("/static/imagens/fundo botoes superiores.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    background-color: transparent;
+
+
+    border-radius: 20px;
+}
+
+
+/* ========================================
+   3 BOTÕES DE CATEGORIA
+   ======================================== */
+
+.botao-categoria {
+    position: absolute;
+
+    width: 407px;
+    height: 81px;
+
+    top: 127px;
+
+    background-image: url("/static/imagens/botoes_superiores.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    background-color: transparent;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.botao-categoria-1 {
+    left: 15px;
+}
+
+.botao-categoria-2 {
+    left: 435px;
+}
+
+.botao-categoria-3 {
+    left: 855px;
+}
+
+
+/* ========================================
+   BOTÕES PRINCIPAIS
+   ======================================== */
+
+.botao-principal {
+    position: absolute;
+
+    width: 410px;
+    height: 235px;
+
+    background-image: url("/static/imagens/botoes_principais.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    background-color: transparent;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+}
+
+.texto-botao {
+    color: white;
+    font-family: "Secular One", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    padding: 100px;
+
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    min-width: 0;   
+    max-width: 100%;
+}
+
+
+/* ========================================
+   PRIMEIRA FILEIRA
+   ======================================== */
+
+.botao-principal-1 {
+    left: 5px;
+    top: 224px;
+}
+
+.botao-principal-2 {
+    left: 435px;
+    top: 224px;
+}
+
+.botao-principal-3 {
+    left: 865px;
+    top: 224px;
+}
+
+
+/* ========================================
+   SEGUNDA FILEIRA
+   ======================================== */
+
+.botao-principal-4 {
+    left: 5px;
+    top: 474px;
+}
+
+.botao-principal-5 {
+    left: 435px;
+    top: 474px;
+}
+
+.botao-principal-6 {
+    left: 865px;
+    top: 474px;
+}

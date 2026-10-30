@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teclado Digital</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='pagina2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sugestoes.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app" id="app">
+
+        <!-- BARRA SUPERIOR -->
+        <div class="barra-superior">
+
+            <a href="{{ url_for('index') }}" class="botao-superior botao-superior-1">
+                <img src="{{ url_for('static', filename='imagens/casinha.png') }}" alt="Início">
+            </a>
+
+            <div class="texto-digitado" id="texto-digitado">
+                <div class="texto-linhas"><span id="conteudo-texto"></span><span class="cursor-texto">|</span></div>
+            </div>
+
+            <div class="botao-superior botao-superior-2" onclick="fecharPrograma()">
+                <img src="{{ url_for('static', filename='imagens/x saida.png') }}" alt="Fechar">
+            </div>
+
+        </div>
+
+
+        <!-- ÁREA DOS 3 BOTÕES -->
+        <div class="area-botoes-superiores"></div>
+
+        <div class="botao-categoria botao-categoria-1" id="sugestao-1" onclick="aceitarSugestao(0)"></div>
+        <div class="botao-categoria botao-categoria-2" id="sugestao-2" onclick="aceitarSugestao(1)"></div>
+        <div class="botao-categoria botao-categoria-3" id="sugestao-3" onclick="aceitarSugestao(2)"></div>
+
+
+        <!-- PRIMEIRA FILEIRA -->
+        <div class="botao-principal botao-principal-1" onclick="digitarEVoltar('A')">
+            <span class="texto-botao">A</span>
+        </div>
+        <div class="botao-principal botao-principal-2" onclick="digitarEVoltar('B')">
+            <span class="texto-botao">B</span>
+        </div>
+        <div class="botao-principal botao-principal-3" onclick="digitarEVoltar('C')">
+            <span class="texto-botao">C</span>
+        </div>
+
+
+        <!-- SEGUNDA FILEIRA -->
+        <div class="botao-principal botao-principal-4" onclick="digitarEVoltar('D')">
+            <span class="texto-botao">D</span>
+        </div>
+        <div class="botao-principal botao-principal-5" onclick="digitarEVoltar('E')">
+            <span class="texto-botao">E</span>
+        </div>
+        <div class="botao-principal botao-principal-6" onclick="digitarEVoltar('F')">
+            <span class="texto-botao">F</span>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='escala.js') }}"></script>
+    <script src="{{ url_for('static', filename='sugestoes.js') }}"></script>
+
+</body>
+
+</html>
