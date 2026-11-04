@@ -8,9 +8,11 @@ Como funciona:
 """
 
 import os
+import sys
 import unicodedata
 
-PASTA = os.path.dirname(os.path.abspath(__file__))
+# No executavel (PyInstaller) os arquivos ficam em sys._MEIPASS; fora dele, ao lado deste arquivo
+PASTA = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
 ARQUIVO_PALAVRAS = os.path.join(PASTA, "dados", "palavras_pt.txt")
 
 # Quantas sugestões devolver (um botão para cada)

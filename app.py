@@ -1,22 +1,96 @@
+import os
+import sys
+
+# Executavel sem janela de terminal nao tem "saida padrao". Sem isto, um simples
+# print/log do Flask poderia derrubar o programa.
+if sys.stdout is None:
+    sys.stdout = open(os.devnull, "w")
+if sys.stderr is None:
+    sys.stderr = open(os.devnull, "w")
+
 from flask import Flask, render_template, jsonify, request
+import json
+import socket
 import threading
 import time
 import webview
-import os
 import re
 from datetime import datetime
 import ctypes
 import sugestor
 
-app = Flask(__name__)
+# ---------------------------------------------------------------------------
+# Caminhos (funcionam tanto rodando o app.py quanto no executavel do PyInstaller)
+# ---------------------------------------------------------------------------
+EXECUTAVEL = getattr(sys, "frozen", False)
 
-# Pasta ao lado do app.py, criada automaticamente se não existir
-PASTA_TEXTOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "textos_salvos")
+
+def pasta_dos_recursos():
+    """Onde ficam templates/, static/ e dados/ (dentro do executavel, quando empacotado)."""
+    if EXECUTAVEL:
+        return sys._MEIPASS
+    return os.path.dirname(os.path.abspath(__file__))
+
+
+def pasta_do_programa():
+    """Pasta que o usuario enxerga: ao lado do .exe (ou do app.py). Aqui ficam
+    os textos salvos e o config.json, que precisam sobreviver ao fechar o programa."""
+    if EXECUTAVEL:
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
+
+
+def carregar_configuracao():
+    """Le o config.json (opcional) que fica ao lado do programa."""
+    configuracao = {"fracao_topo": 0.07, "descer_px": 20}
+    try:
+        with open(os.path.join(pasta_do_programa(), "config.json"), encoding="utf-8") as arquivo:
+            configuracao.update(json.load(arquivo))
+    except (OSError, ValueError):
+        pass   # sem arquivo (ou com erro nele): usa os valores padrao
+    return configuracao
+
+
+def escolher_porta(preferida=5000):
+    """Usa a porta 5000; se outro programa estiver nela, pega qualquer porta livre."""
+    for porta in (preferida, 0):
+        with socket.socket() as teste:
+            try:
+                teste.bind(("127.0.0.1", porta))
+                return teste.getsockname()[1]
+            except OSError:
+                continue
+    return preferida
+
+
+def esperar_servidor(porta, tempo_maximo=20):
+    """Espera o Flask responder (em vez de apostar que 1 segundo basta)."""
+    limite = time.time() + tempo_maximo
+    while time.time() < limite:
+        try:
+            with socket.create_connection(("127.0.0.1", porta), timeout=0.5):
+                return True
+        except OSError:
+            time.sleep(0.1)
+    return False
+
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(pasta_dos_recursos(), "templates"),
+    static_folder=os.path.join(pasta_dos_recursos(), "static"),
+)
+
+# Pasta ao lado do programa, criada automaticamente se não existir
+PASTA_TEXTOS = os.path.join(pasta_do_programa(), "textos_salvos")
+
+PORTA = escolher_porta()
+CONFIG = carregar_configuracao()
 
 # Fração da altura da tela ocupada pela barra do OpiKey (ajuste fino aqui)
-FRACAO_TOPO = 0.07
+FRACAO_TOPO = CONFIG["fracao_topo"]
 TITULO_JANELA = "Teclado Digital"
-DESCER_PX = 20        # quantos pixels empurrar o programa para baixo (ajuste aqui)
+DESCER_PX = CONFIG["descer_px"]   # quantos pixels empurrar o programa para baixo (ajuste aqui)
 
 
 # Função para gerar nomes de arquivos
@@ -171,7 +245,7 @@ def sugestoes():
 def iniciar_flask():
     app.run(
         host="127.0.0.1",
-        port=5000,
+        port=PORTA,
         debug=False,
         use_reloader=False
     )
@@ -190,7 +264,12 @@ def ajustar_janela():
         ctypes.c_uint,
     ]
 
-    hwnd = user32.FindWindowW(None, TITULO_JANELA)
+    hwnd = None
+    for _ in range(50):   # tenta por ate ~10 s: em PCs mais lentos a janela demora a abrir
+        hwnd = user32.FindWindowW(None, TITULO_JANELA)
+        if hwnd:
+            break
+        time.sleep(0.2)
     if not hwnd:
         print("Janela não encontrada para ajustar.")
         return
@@ -223,12 +302,12 @@ if __name__ == "__main__":
     flask_thread = threading.Thread(target=iniciar_flask, daemon=True)
     flask_thread.start()
 
-    # Dá um pequeno tempo para o Flask iniciar
-    time.sleep(1)
+    # Espera o Flask ficar pronto para responder
+    esperar_servidor(PORTA)
 
     webview.create_window(
         TITULO_JANELA,
-        "http://127.0.0.1:5000",
+        f"http://127.0.0.1:{PORTA}",
         frameless=True,
         resizable=False,
         on_top=True,
