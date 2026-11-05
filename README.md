@@ -12,8 +12,8 @@
 
 
 ## Imagens
-![](static/imagens/Captura de tela 2026-11-04 222113.png) 
-![](static/imagens/Captura de tela 2026-11-04 222210.png)
+![](static/imagens/Captura%20de%20tela%202026-11-04%20222113.png)
+![](static/imagens/Captura%20de%20tela%202026-11-04%20222210.png)
 
 
 ## Funcionalidades
@@ -39,7 +39,7 @@
 ## Arquitetura do projeto 
 
 ### Imagens
-![](static/imagens/Captura de tela 2026-11-04 221924.png)
+![](static/imagens/Captura%20de%20tela%202026-11-04%20221924.png)
 
 
 ### Tecnologias
