@@ -12,6 +12,9 @@
 
 
 ## Imagens
+![](static/imagens/Captura de tela 2026-11-04 222113.png) 
+![](static/imagens/Captura de tela 2026-11-04 222210.png)
+
 
 ## Funcionalidades
 
@@ -36,6 +39,7 @@
 ## Arquitetura do projeto 
 
 ### Imagens
+![](static/imagens/Captura de tela 2026-11-04 221924.png)
 
 
 ### Tecnologias
@@ -56,3 +60,5 @@
 
 
 ## Como instalar o programa executável
+
+[📥 Baixar Teclado Virtual Acessível (.zip)](https://drive.google.com/file/d/1I8a5u52rpnj5lxfMPa5gxvVE6OhEp_dK/view?usp=sharing)
