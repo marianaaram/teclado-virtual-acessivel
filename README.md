@@ -61,4 +61,4 @@
 
 ## Como instalar o programa executável
 
-[📥 Baixar Teclado Virtual Acessível (.zip)](https://drive.google.com/file/d/1I8a5u52rpnj5lxfMPa5gxvVE6OhEp_dK/view?usp=sharing)
+[📥 Baixar Teclado Virtual Acessível V 1.0 (.zip)](https://drive.google.com/file/d/1I8a5u52rpnj5lxfMPa5gxvVE6OhEp_dK/view?usp=sharing)
